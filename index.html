@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier by Murooj</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=20260625-3" />
+    <link rel="apple-touch-icon" href="logo.svg?v=20260625-3" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Oooh+Baby&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260625-3" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Atelier by Murooj home">
+        <span class="brand-mark"><img src="logo.svg?v=20260625-3" alt="" /></span>
+        <span class="brand-text"><strong>Atelier</strong><small>by Murooj</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#paintings" data-nav="paintings">Paintings</a>
+        <a href="#about" data-nav="about">About Us</a>
+        <a href="#connect" data-nav="connect">Contact us</a>
+        <a class="admin-link hidden" href="#admin" data-nav="admin">Admin Panel</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button text-icon" id="searchToggle" type="button" aria-label="Search paintings" title="Search paintings">
+          <span aria-hidden="true">Search</span>
+        </button>
+        <a class="icon-button cart-button text-icon" href="#cart" aria-label="Open cart" title="Cart">
+          <span aria-hidden="true">Cart</span>
+          <strong id="cartCount">0</strong>
+        </a>
+        <button class="account-button" id="accountButton" type="button">Log in / Sign up</button>
+      </div>
+    </header>
+
+    <section class="search-bar hidden" id="searchBar">
+      <div class="search-shell">
+        <input id="searchInput" type="search" placeholder="Search handmade paintings" autocomplete="off" />
+      </div>
+    </section>
+
+    <main id="app" tabindex="-1"></main>
+
+    <div class="modal-backdrop hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <section class="modal-panel auth-panel">
+        <button class="modal-close" id="closeAuth" type="button" aria-label="Close">×</button>
+        <div class="auth-tabs">
+          <button class="tab-button active" type="button" data-auth-tab="login">Log in</button>
+          <button class="tab-button" type="button" data-auth-tab="signup">Sign up</button>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <h2 id="authTitle">Welcome back</h2>
+          <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+          <label>Password<span class="password-field"><input name="password" type="password" required autocomplete="current-password" /><button type="button" class="eye-button">Show</button></span></label>
+          <label class="check-row"><input name="remember" type="checkbox" checked /> Remember Me</label>
+          <button class="primary-button" type="submit">Log in</button>
+          <p class="form-note" id="loginMessage"></p>
+        </form>
+
+        <form id="signupForm" class="auth-form hidden">
+          <h2>Create your account</h2>
+          <label>First name<input name="name" type="text" required autocomplete="given-name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+          <label>Password<span class="password-field"><input name="password" type="password" required autocomplete="new-password" minlength="6" /><button type="button" class="eye-button">Show</button></span></label>
+          <label>Confirm password<span class="password-field"><input name="confirmPassword" type="password" required autocomplete="new-password" minlength="6" /><button type="button" class="eye-button">Show</button></span></label>
+          <label>Address<textarea name="address" required placeholder="Enter your House/Flat number and residency name(Society name)"></textarea></label>
+          <label>Pincode<input name="pincode" type="text" inputmode="numeric" maxlength="6" required /></label>
+          <div class="two-fields">
+            <label>City<input name="city" type="text" readonly /></label>
+            <label>State<input name="state" type="text" readonly /></label>
+          </div>
+          <label class="check-row"><input name="remember" type="checkbox" checked /> Remember Me</label>
+          <button class="primary-button" type="submit">Create account</button>
+          <p class="form-note" id="signupMessage"></p>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop hidden" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <section class="modal-panel">
+        <h2 id="confirmTitle">Confirm</h2>
+        <div id="confirmBody"></div>
+        <div class="modal-actions">
+          <button class="ghost-button" id="confirmCancel" type="button">Cancel</button>
+          <button class="primary-button" id="confirmOk" type="button">Confirm</button>
+        </div>
+      </section>
+    </div>
+
+    <template id="soonTemplate">
+      <article class="soon-card">
+        <span>Adding more paintings soon</span>
+      </article>
+    </template>
+
+    <script src="app.js?v=20260625-3"></script>
+  </body>
+</html>
